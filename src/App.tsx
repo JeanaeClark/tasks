@@ -1,5 +1,7 @@
 import React from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import "./App.css";
+import photo from "./images/IMG_4031.jpg";
 
 function App(): JSX.Element {
     return (
