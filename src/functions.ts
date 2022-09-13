@@ -1,10 +1,13 @@
+import { toASCII } from "punycode";
+import { isUnparsedPrepend } from "typescript";
+
 /**
  * Consumes a single temperature in Fahrenheit (a number) and converts to Celsius
  * using this formula:
  *      C = (F - 32) * 5/9
  */
 export function fahrenheitToCelius(temperature: number): number {
-    const tempInCelsius = (temperature - 32) * (5 / 9);
+    const tempInCelsius: number = (temperature - 32) * (5 / 9);
     return tempInCelsius;
 }
 
@@ -13,7 +16,7 @@ export function fahrenheitToCelius(temperature: number): number {
  * if the number is greater than zero.
  */
 export function add3(first: number, second: number, third: number): number {
-    let sum;
+    let sum: number;
     if (first > 0 && second > 0 && third > 0) {
         sum = first + second + third;
     } else if (first > 0 && second > 0) {
@@ -39,7 +42,8 @@ export function add3(first: number, second: number, third: number): number {
  * mark added to the end.
  */
 export function shout(message: string): string {
-    return "";
+    const upper: string = message.toUpperCase() + "!";
+    return upper;
 }
 
 /**
