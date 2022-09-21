@@ -1,3 +1,5 @@
+import { ElementFlags } from "typescript";
+
 /**
  * Consume an array of numbers, and return a new array containing
  * JUST the first and last number. If there are no elements, return
@@ -45,7 +47,14 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    const numbersclone = amounts
+        .map((element: string): string =>
+            element[0] == "$" ? element.slice(1) : element
+        )
+        .map((element: string): number =>
+            Number(element) ? Number(element) : Number("0")
+        );
+    return numbersclone;
 };
 
 /**
