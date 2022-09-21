@@ -105,7 +105,15 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    const sum: number = addends.reduce(
+        (currentTotal: number, num: number) => currentTotal + num,
+        0
+    );
+    let addition: string = sum + "=" + addends.join("+");
+    if (addends.length == 0) {
+        addition = "0=0";
+    }
+    return addition;
 }
 
 /**
