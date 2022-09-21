@@ -5,7 +5,16 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    const isBookEnd = (element: number): boolean =>
+        numbers.findIndex((a: number): boolean => a === element) == 0 ||
+        numbers.findIndex((a: number): boolean => a === element) ==
+            numbers.length - 1;
+    // const isBookEnd = (element: number): boolean => element > 0;
+    const numbersclone = numbers.filter(isBookEnd);
+    if (numbers.length == 1) {
+        numbersclone.splice(1, 0, numbers[0]);
+    }
+    return numbersclone;
 }
 
 /**
