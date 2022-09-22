@@ -36,7 +36,6 @@ export function isCorrect(question: Question, answer: string): boolean {
     } else {
         return false;
     }
-    //return question.expected.trimEnd().toLowerCase();
 }
 
 /**
@@ -46,6 +45,17 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
+    if (question.type == "short_answer_question") {
+        return true;
+    } else if (question.type == "multiple_choice_question") {
+        if (
+            question.options.some((choice: string): boolean => choice == answer)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     return false;
 }
 
