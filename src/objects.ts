@@ -168,5 +168,12 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return contentQuestion;
+    const newQuestion: Question = {
+        ...contentQuestion,
+        name: name,
+        id: id,
+        points: points,
+        published: false
+    };
+    return newQuestion;
 }
