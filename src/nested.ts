@@ -1,4 +1,3 @@
-import { type } from "os";
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { makeBlankQuestion } from "./objects";
@@ -221,7 +220,14 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const newQuestions: Question[] = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            type: question.id == targetId ? newQuestionType : question.type,
+            options: question.id == targetId ? [] : question.options
+        })
+    );
+    return newQuestions;
 }
 
 /**
