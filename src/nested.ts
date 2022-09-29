@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion } from "./objects";
+import { duplicateQuestion, makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -240,13 +240,38 @@ export function changeQuestionTypeById(
  * Remember, if a function starts getting too complicated, think about how a helper function
  * can make it simpler! Break down complicated tasks into little pieces.
  */
+
+function newOp(
+    options: string[],
+    targetOptionIndex: number,
+    newOption: string
+): string[] {
+    if (targetOptionIndex == -1) {
+        const newOptions: string[] = [...options, newOption];
+        return newOptions;
+    } else {
+        const NewOptions: string[] = [...options];
+        NewOptions.splice(targetOptionIndex, 1, newOption);
+        return NewOptions;
+    }
+}
+
 export function editOption(
     questions: Question[],
     targetId: number,
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const newQuestions: Question[] = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            options:
+                question.id == targetId
+                    ? newOp(question.options, targetOptionIndex, newOption)
+                    : question.options
+        })
+    );
+    return newQuestions;
 }
 
 /***
@@ -260,5 +285,14 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const targetQuestionIndex: number = questions.findIndex(
+        (question: Question): boolean => question.id == targetId
+    );
+    const newQuestions: Question[] = [...questions];
+    newQuestions.splice(
+        targetQuestionIndex + 1,
+        0,
+        duplicateQuestion(newId, questions[targetQuestionIndex])
+    );
+    return newQuestions;
 }
