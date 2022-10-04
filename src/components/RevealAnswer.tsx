@@ -7,7 +7,7 @@ export function RevealAnswer(): JSX.Element {
         <span>
             <Button onClick={() => setVisible(!visible)}>
                 {visible === true ? "42" : "Reveal Answer"}
-            </Button>{" "}
+            </Button>
         </span>
     );
 }
