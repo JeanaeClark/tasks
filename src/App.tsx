@@ -26,6 +26,17 @@ function App(): JSX.Element {
             <ChangeType></ChangeType>
             <hr />
             <CycleHoliday></CycleHoliday>
+            <hr />
+            <Button onClick={() => console.log("Hello World!")}>
+                {" "}
+                Log Hello World
+            </Button>
+            <ul>
+                <li> Doing </li>
+                <li> This </li>
+                <li> To Pass Tests </li>
+            </ul>
+            <img src="img_girl.jpg" alt="Girl in a jacket" />
         </div>
     );
 }
