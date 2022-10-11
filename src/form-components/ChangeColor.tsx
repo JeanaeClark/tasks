@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 
 //const Colors = ["red","orange","yellow","green","blue","indigo","violet"<]
 export function ChangeColor(): JSX.Element {
-    const [chosenColor, changeColor] = useState<string>("red");
+    const [chosenColor, changeColor] = useState<string>("");
 
     // This is the Control
     function updateColor(event: React.ChangeEvent<HTMLInputElement>) {
