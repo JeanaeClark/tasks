@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
@@ -21,43 +22,47 @@ export function EditMode(): JSX.Element {
     // This is the View
     return (
         <div>
-            <Form.Check
-                type="switch"
-                id="is-happy-check"
-                checked={inEditMode}
-                onChange={toggleEdit}
-                label={
-                    (!inEditMode
-                        ? isStudent
-                            ? userName + " is a student"
-                            : userName + " is not a student"
-                        : "") + "\n"
-                }
-            />
-            {!inEditMode ? (
-                " "
-            ) : (
-                <div>
+            <div>
+                <Form.Check
+                    type="switch"
+                    id="is-happy-check"
+                    checked={inEditMode}
+                    onChange={toggleEdit}
+                    label={
+                        (!inEditMode
+                            ? isStudent
+                                ? userName + " is a student"
+                                : userName + " is not a student"
+                            : "") + "\n"
+                    }
+                />
+            </div>
+            <div>
+                {!inEditMode ? (
+                    ""
+                ) : (
                     <div>
-                        <Form.Group controlId="formMovieName">
-                            <Form.Label>Enter Name: </Form.Label>
-                            <Form.Control
-                                value={userName}
-                                onChange={updateName}
+                        <div>
+                            <Form.Group controlId="formMovieName">
+                                <Form.Label>Enter Name: </Form.Label>
+                                <Form.Control
+                                    value={userName}
+                                    onChange={updateName}
+                                />
+                            </Form.Group>
+                        </div>
+                        <div>
+                            <Form.Check
+                                type="checkbox"
+                                id="studentcheck"
+                                label="Are you a student?"
+                                checked={isStudent}
+                                onChange={changeStudentStatus}
                             />
-                        </Form.Group>
+                        </div>
                     </div>
-                    <div>
-                        <Form.Check
-                            type="checkbox"
-                            id="studentcheck"
-                            label="Are you a student?"
-                            checked={isStudent}
-                            onChange={changeStudentStatus}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }
